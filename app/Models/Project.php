@@ -10,7 +10,12 @@ class Project extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description', 'slug', 'cover_image'];
+    protected $fillable = ['title', 'type', 'description', 'slug', 'cover_image'];
+
+    public function type()
+    {
+        return $this->belongsTo(Type::class);
+    }
 
     public static function generateSlug($title)
     {
