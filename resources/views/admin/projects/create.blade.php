@@ -24,39 +24,49 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="cover_image" class="form-label">Immagine del progetto</label>
-                        <input type="file" name="cover_image" id="cover_image"
-                            class="form-control
+                        <label for="type" class="form-label">Tipologia</label>
+                        <select name="type_id" id="type" class="form-select">
+                            <option value="" selected>Nessuna tipologia selezionata</option>
+                            @foreach ($types as $type)
+                                <option value="{{ $type->id }}" @selected(old('type_id') == $type->id)>{{ $type->name }}
+                                </option>
+                            @endforeach
+                        </select>
+
+                        <div class="mb-3">
+                            <label for="cover_image" class="form-label">Immagine del progetto</label>
+                            <input type="file" name="cover_image" id="cover_image"
+                                class="form-control
                         @error('cover_image')
                         is-invalid
                         @enderror">
-                        @error('cover_image')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
+                            @error('cover_image')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
 
-                    {{-- Image preview --}}
-                    <div id="image-preview-wrapper" class="my-3 mx-auto w-75">
-                    </div>
+                        {{-- Image preview --}}
+                        <div id="image-preview-wrapper" class="my-3 mx-auto w-75">
+                        </div>
 
-                    <div class="mb-3">
-                        <label for="description" class="form-label">Descrizione</label>
-                        <textarea name="description" id="description" rows="10"
-                            class="form-control 
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Descrizione</label>
+                            <textarea name="description" id="description" rows="10"
+                                class="form-control 
                             @error('description')
                         is-invalid
                         @enderror
                         ">{{ old('description') }}</textarea>
-                        @error('description')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
+                            @error('description')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
 
-                    <button type="submit" class="btn btn-success">Salva</button>
+                        <button type="submit" class="btn btn-success">Salva</button>
                 </form>
             </div>
         </div>
